@@ -1,5 +1,5 @@
 import React from 'react'
-import productData from '../products.json'
+import productData from '../../public/products.json'
 import {Link} from 'react-router-dom'
 import SelectedCategory from '../components/SelectedCategory'
 

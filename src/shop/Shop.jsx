@@ -1,6 +1,6 @@
 import React from 'react'
 import PageHeader from '../components/PageHeader'
-import Data from "../products.json"
+import Data from "../../public/products.json"
 import ProductCards from './ProductCards'
 import Pagination from './Pagination'
 import Search from './Search'

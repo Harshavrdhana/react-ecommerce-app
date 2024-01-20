@@ -1,5 +1,5 @@
 import React from 'react'
-import Data from "../products.json"
+import Data from "../../public/products.json"
 
 const ShopCategory = ({ filterItem, setItem, menuItems, setProducts, selectedCategory }) => {
     return (

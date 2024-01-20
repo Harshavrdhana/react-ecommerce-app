@@ -16,7 +16,7 @@ const SpecificProduct = () => {
     const { id } = useParams()
 
     React.useEffect(() => {
-        fetch("../src/products.json")
+        fetch("../../public/products.json")
             .then(res => res.json())
             .then(data => setProduct(data))
     }, [])
