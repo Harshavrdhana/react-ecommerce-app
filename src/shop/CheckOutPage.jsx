@@ -2,7 +2,7 @@
 import React from 'react'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal';
-import "../components/modal.css"
+import "../components/Modal.css"
 import { useNavigate,useLocation } from 'react-router-dom';
 
 
