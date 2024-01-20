@@ -1,7 +1,7 @@
 import React from 'react'
 import PageHeader from '../components/PageHeader'
 import Data from "../products.json"
-import ProductCards from './productCards'
+import ProductCards from './ProductCards'
 import Pagination from './Pagination'
 import Search from './Search'
 import ShopCategory from './ShopCategory'
@@ -30,10 +30,10 @@ const Shop = () => {
 
     //filter products based on category
     const [selectedCategory, setSelectedCategory] = React.useState(("All"))
-    const menuItems = [...new Set(Data.map((val)=> val.category))]
+    const menuItems = [...new Set(Data.map((val) => val.category))]
 
-    const filterItem = (curcat)=>{
-        const newItem = Data.filter((newVal)=>{
+    const filterItem = (curcat) => {
+        const newItem = Data.filter((newVal) => {
             return newVal.category === curcat;
         })
         setSelectedCategory(curcat)
@@ -85,16 +85,16 @@ const Shop = () => {
                                     products={products}
                                     GridList={GridList}
                                 />
-                                <ShopCategory 
+                                <ShopCategory
                                     filterItem={filterItem}
                                     setItem={setProducts}
                                     menuItems={menuItems}
                                     setProducts={setProducts}
                                     selectedCategory={selectedCategory}
                                 />
-                                <PopularPost/> 
-                                <Tags/> 
-                                
+                                <PopularPost />
+                                <Tags />
+
                             </aside>
                         </div>
                     </div>
