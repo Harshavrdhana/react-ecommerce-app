@@ -6,7 +6,7 @@ import Tags from './Tags'
 import PageHeader from '../components/PageHeader'
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-// Import Swiper styles
+// Import Swiper styles9
 import "swiper/css";
 import { Autoplay } from 'swiper/modules';
 import ProductDisplay from './ProductDisplay';
@@ -16,7 +16,7 @@ const SpecificProduct = () => {
     const { id } = useParams()
 
     React.useEffect(() => {
-        fetch("/products.json")
+        fetch("../src/products.json")
             .then(res => res.json())
             .then(data => setProduct(data))
     }, [])
