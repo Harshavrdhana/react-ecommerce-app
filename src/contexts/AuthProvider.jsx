@@ -1,63 +1,65 @@
-import React, { useEffect } from 'react'
-import { createContext } from "react"
-import app from "../firebase/firebase.config"
-import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth"
+/* eslint-disable react/prop-types */
+import React from 'react';
+import { createContext } from 'react';
+import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import app from '../firebase/firebase.config';
 
 export const AuthContext = createContext();
-const auth = getAuth();
+const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
 
-const AuthProvider = ({ children }) => {
-  const [user, setUser] = React.useState(null);
-  const [loading, setLoading] = React.useState(true)
+const AuthProvider = ({children}) => {
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
 
-  //create user
-  const createUser = (email, password) => {
-    setLoading(true)
-    return createUserWithEmailAndPassword(auth, email, password)
-  }
-
-  //create user using gmail
-  const signUpWithGmail = () =>{
-    setLoading(true);
-    return signInWithPopup(auth,googleProvider)
-  }
-
-  //login
-  const login =(email,password)=>{
-    setLoading(true);
-    return signInWithEmailAndPassword(auth,email,password)
-  }
-
-  //logout
-  const logOut=()=>{
-    return signOut(Auth)
-  }
-
-  //user is available or not
-  useEffect(()=>{
-    const unsubscribe= onAuthStateChanged(auth,currentUser=>{
-      setUser(currentUser)
-      setLoading(false);
-    })
-    return ()=>{
-      return unsubscribe()
+    const createUser = (email, password) => {
+        setLoading(true);
+        return createUserWithEmailAndPassword(auth, email, password);
     }
-  })
 
-  const authInfo = {
-    user,
-    loading,
-    createUser,
-    signUpWithGmail,
-    login,
-    logOut
-  }
-  return (
-    <AuthContext.Provider value={authInfo}>
-      {children}
-    </AuthContext.Provider>
-  )
-}
+    const signUpWithGmail = () => {
+        setLoading(true);
+        return signInWithPopup(auth, googleProvider);
+    }
 
-export default AuthProvider
+    const login = (email, password) =>{
+        setLoading(true);
+        return signInWithEmailAndPassword(auth, email, password);
+    }
+
+    const logOut = () =>{
+        localStorage.removeItem('genius-token');
+        return signOut(auth);
+    }
+
+    useEffect( () =>{
+        const unsubscribe = onAuthStateChanged(auth, currentUser =>{
+            // console.log(currentUser);
+            setUser(currentUser);
+            setLoading(false);
+        });
+
+        return () =>{
+            return unsubscribe();
+        }
+    }, [])
+
+    const authInfo = {
+        user, 
+        loading,
+        createUser, 
+        login, 
+        logOut,
+        signUpWithGmail
+    }
+
+    return (
+        <AuthContext.Provider value={authInfo}>
+            {children}
+        </AuthContext.Provider>
+    );
+};
+
+export default AuthProvider;

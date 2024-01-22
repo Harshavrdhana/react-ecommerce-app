@@ -128,8 +128,6 @@ const NavItems = () => {
                             >
                                 <i className="icofont-info-square"></i>
                             </div>
-
-
                         </div>
                     </div>
                 </div>

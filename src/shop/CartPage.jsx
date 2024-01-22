@@ -20,7 +20,7 @@ const CartPage = () => {
 
     //handle quantity increase
     const handleIncrese = (item) => {
-        item.quantity += 1
+        item.quantity +=1;
         setCartItems([...cartItems])
 
         //update local storage with new item
@@ -106,7 +106,7 @@ const CartPage = () => {
                                                             type='text'
                                                             className='cart-plus-minus-box'
                                                             name="qtybutton"
-                                                            value={item.quantity}
+                                                            defaultValue={item.quantity}
                                                         />
                                                         <div
                                                             className="inc qtybutton"
@@ -141,13 +141,13 @@ const CartPage = () => {
                                     />
                                     <input
                                         type="submit"
-                                        value={"Apply Coupon"}
+                                        defaultValue="Apply Coupon"
                                     />
                                 </form>
                                 <form className='cart-checkout'>
                                     <input
                                         type="submit"
-                                        value="Update Cart"
+                                        defaultValue="Update Cart"
                                     />
                                     <div>
                                         <CheckOutPage/>
